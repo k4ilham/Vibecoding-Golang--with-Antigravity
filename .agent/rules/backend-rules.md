@@ -58,10 +58,13 @@ backend/
 All API responses MUST follow a consistent JSON structure using a helper function (e.g., in `utils/response.go`).
 
 **CORS Configuration:**
-Always specify allowed headers and methods to prevent preflight failures.
+Always specify explicit allowed origins (or fetch from ENV) to prevent preflight failures. 
+*Note: Wildcard `*` cannot be used if `AllowCredentials` is `true`.*
+
 ```go
+allowedOrigins := os.Getenv("ALLOWED_ORIGINS")
 app.Use(cors.New(cors.Config{
-    AllowOrigins:     "*",
+    AllowOrigins:     allowedOrigins,
     AllowHeaders:     "Origin, Content-Type, Accept, Authorization",
     AllowMethods:     "GET, POST, PUT, DELETE, OPTIONS",
     AllowCredentials: true,

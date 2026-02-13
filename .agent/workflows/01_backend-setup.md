@@ -477,8 +477,13 @@ func main() {
 	app.Use(recover.New())
 
 	// CORS configuration
+	allowedOrigins := config.Get("ALLOWED_ORIGINS")
+	if allowedOrigins == "" {
+		allowedOrigins = "http://localhost:5173" // Default for development
+	}
+
 	app.Use(cors.New(cors.Config{
-		AllowOrigins:     "*", // In production, replace with your specific domain
+		AllowOrigins:     allowedOrigins,
 		AllowHeaders:     "Origin, Content-Type, Accept, Authorization",
 		AllowMethods:     "GET, POST, PUT, DELETE, OPTIONS",
 		AllowCredentials: true,

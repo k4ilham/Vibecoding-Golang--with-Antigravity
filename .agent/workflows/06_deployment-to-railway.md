@@ -187,6 +187,7 @@ dist-ssr
         - `SERVER_PORT`: `8090`
         - `DB_HOST`, `DB_PORT`, `DB_USER`, `DB_PASSWORD`, `DB_NAME` (copy from Railway Postgres variables)
         - `JWT_SECRET`: (your secure secret)
+        - `ALLOWED_ORIGINS`: `https://frontend-laundry-production.up.railway.app, http://localhost:5173`
 5. **Deploy Frontend**:
     - Connect your GitHub repo again.
     - Set the Root Directory to `frontend`.
