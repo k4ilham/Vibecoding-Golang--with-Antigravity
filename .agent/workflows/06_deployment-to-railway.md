@@ -193,3 +193,8 @@ dist-ssr
     - Set Environment Variables:
         - `PORT`: `3001`
         - `VITE_API_URL`: (your backend railway URL, e.g., `https://backend-production.up.railway.app`)
+
+### ⚠️ Critical Note on Environment Variables
+- **Vite Build Process**: Environment variables prefixed with `VITE_` are embedded into the client-side code **during the build process**.
+- **Redeploy Required**: If you change `VITE_API_URL` in the Railway settings, you **MUST** trigger a new deployment (Redeploy) for the changes to take effect in the browser. Changing the variable in the dashboard alone is not enough for the static build.
+- **Port Fallback**: Local development may fall back to port `5174` if `5173` is busy. Always check the terminal output for the correct local URL.

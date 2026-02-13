@@ -57,6 +57,17 @@ backend/
 ## 4. API Design & Response Format
 All API responses MUST follow a consistent JSON structure using a helper function (e.g., in `utils/response.go`).
 
+**CORS Configuration:**
+Always specify allowed headers and methods to prevent preflight failures.
+```go
+app.Use(cors.New(cors.Config{
+    AllowOrigins:     "*",
+    AllowHeaders:     "Origin, Content-Type, Accept, Authorization",
+    AllowMethods:     "GET, POST, PUT, DELETE, OPTIONS",
+    AllowCredentials: true,
+}))
+```
+
 **Success Response:**
 ```json
 {
