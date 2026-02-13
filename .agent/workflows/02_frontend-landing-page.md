@@ -1,35 +1,40 @@
 ---
-description: Create a modern, responsive landing page for Maulana Laundry using React, Vite, Tailwind, and Shadcn UI.
+description: Create a modern, responsive, and feature-rich landing page for Maulana Laundry using React, Vite, Tailwind CSS, and Shadcn UI, including assets and PWA setup.
 ---
 
 # 02 Frontend Landing Page (Maulana Laundry)
 
-This workflow sets up a high-performance, PWA-ready landing page with a clean Blue/White theme, Floating WhatsApp, and animations.
+This workflow sets up a high-performance, PWA-ready landing page with a premium Blue/White theme, custom assets (logo, hero image), Floating WhatsApp, and comprehensive business sections.
 
 ## 1. Initialize Vite Project
 // turbo
 Initialize the React project with Vite and TypeScript.
 ```bash
 npm create vite@latest frontend -- --template react-ts
-cd frontend
-npm install
 ```
 
-## 2. Install Tailwind CSS & Dependencies
+## 2. Install Dependencies
 // turbo
-Install Tailwind, Framer Motion (for animations), and Lucide React (icons).
+Install Tailwind v3 (stable), Framer Motion (for animations), and other required packages.
 ```bash
 cd frontend
-npm install -D tailwindcss postcss autoprefixer
+npm install
+npm install --legacy-peer-deps framer-motion lucide-react react-helmet-async clsx tailwind-merge vite-plugin-pwa react-router-dom @types/node
+npm install -D tailwindcss@^3.4 postcss autoprefixer
 npx tailwindcss init -p
-npm install framer-motion lucide-react react-helmet-async clsx tailwind-merge
-npm install vite-plugin-pwa
 ```
 
-## 3. Configure Tailwind & Theme (Blue/White)
-Configure `tailwind.config.js` and `index.css` for the "Clean Blue" theme.
+## 3. Setup Assets (Logo & Images)
+// turbo
+Create necessary directories and place dummy assets. (Replace with actual high-quality assets during development).
+```bash
+mkdir -p frontend/src/assets frontend/public
+# Place logo.png and hero.png in frontend/src/assets/
+# Place favicon.png and PWA icons in frontend/public/
+```
 
-### 3.1 Tailwind Config
+## 4. Configure Tailwind & Theme
+### 4.1 Tailwind Config
 Update `frontend/tailwind.config.js`.
 ```javascript
 /** @type {import('tailwindcss').Config} */
@@ -70,7 +75,7 @@ export default {
 }
 ```
 
-### 3.2 Global CSS
+### 4.2 Global CSS
 Update `frontend/src/index.css`.
 ```css
 @tailwind base;
@@ -78,84 +83,63 @@ Update `frontend/src/index.css`.
 @tailwind utilities;
 
 @layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+
   body {
     @apply bg-background text-foreground antialiased;
   }
 }
 ```
 
-## 4. Setup Shadcn UI (Manual/Lightweight)
-Since we want a quick setup, we'll manually add the standard `utils.ts` and button component if needed, or initialize full shadcn.
-// turbo
-```bash
-cd frontend
-npx shadcn-ui@latest init -y
-```
-
 ## 5. Implement Components
 
-### 5.1 Floating WhatsApp
-Create `frontend/src/components/FloatingWA.tsx`.
+### 5.1 Navbar
+Create `frontend/src/components/Navbar.tsx` using the custom logo.
 ```tsx
-import { MessageCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
+import { useState } from 'react';
+import logo from '../assets/logo.png';
 
-export const FloatingWA = () => {
+export const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const menuItems = ['Beranda', 'Layanan', 'Harga', 'Tentang', 'Kontak'];
+
   return (
-    <motion.a
-      href="https://wa.me/6281316790080"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg z-50 hover:bg-green-600 transition-colors"
-      initial={{ scale: 0 }}
-      animate={{ scale: 1 }}
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.9 }}
-      aria-label="Chat WhatsApp"
-    >
-      <MessageCircle size={28} />
-    </motion.a>
+    <nav className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md shadow-sm z-40">
+      <div className="container mx-auto px-4">
+        <div className="flex justify-between items-center h-16">
+          <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="flex items-center space-x-2">
+            <img src={logo} alt="Maulana Laundry" className="h-10 w-10 object-contain" />
+            <span className="text-2xl font-bold text-primary">Maulana Laundry</span>
+          </motion.div>
+          {/* Menu items... */}
+        </div>
+      </div>
+    </nav>
   );
 };
 ```
 
-### 5.2 Navbar & Hero
-Create `frontend/src/components/Hero.tsx`.
+### 5.2 Hero Section
+Create `frontend/src/components/Hero.tsx` using the premium hero image.
 ```tsx
 import { motion } from 'framer-motion';
+import heroImg from '../assets/hero.png';
 
 export const Hero = () => {
   return (
-    <section className="relative h-screen flex items-center justify-center bg-gradient-to-b from-blue-50 to-white overflow-hidden">
-        <div className="container mx-auto px-4 text-center z-10">
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-5xl md:text-7xl font-bold text-blue-900 mb-6"
-            >
-              Maulana Laundry
-            </motion.h1>
-            <motion.p 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="text-xl text-blue-600 mb-8"
-            >
-              Layanan Laundry Premium di Bogor. Bersih, Wangi, Rapi.
-            </motion.p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => window.open('https://wa.me/6281316790080', '_blank')}
-              className="bg-primary text-white px-8 py-3 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all"
-            >
-              Pesan Sekarang
-            </motion.button>
+    <section id="beranda" className="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0 z-0">
+            <img src={heroImg} alt="Laundry background" className="w-full h-full object-cover opacity-10" />
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-white/40 to-blue-100/80" />
         </div>
-        {/* Background Elements */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-0">
-            <div className="absolute top-10 left-10 w-64 h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float"></div>
-            <div className="absolute bottom-10 right-10 w-64 h-64 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float" style={{animationDelay: '1s'}}></div>
+        
+        <div className="container mx-auto px-4 text-center z-10">
+            {/* Content... */}
         </div>
     </section>
   );
@@ -163,94 +147,20 @@ export const Hero = () => {
 ```
 
 ## 6. PWA Setup
-Update `frontend/vite.config.ts`.
-```typescript
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import { VitePWA } from 'vite-plugin-pwa'
-import path from "path"
+Update `frontend/vite.config.ts`. (Ensure icons match the paths in step 3).
 
-export default defineConfig({
-  plugins: [
-    react(),
-    VitePWA({
-      registerType: 'autoUpdate',
-      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
-      manifest: {
-        name: 'Maulana Laundry',
-        short_name: 'MaulanaLaundry',
-        description: 'Layanan Laundry Terbaik di Bogor',
-        theme_color: '#0ea5e9',
-        icons: [
-          {
-            src: 'pwa-192x192.png',
-            sizes: '192x192',
-            type: 'image/png'
-          },
-          {
-            src: 'pwa-512x512.png',
-            sizes: '512x512',
-            type: 'image/png'
-          }
-        ]
-      }
-    })
-  ],
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
-  },
-})
-```
-
-## 7. Main App Assembly
+## 7. Main App & SEO
 Update `frontend/src/App.tsx`.
 ```tsx
-import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { Hero } from './components/Hero';
-import { FloatingWA } from './components/FloatingWA';
-
-function App() {
-  return (
-    <HelmetProvider>
-      <div className="min-h-screen bg-white font-sans text-foreground">
-        <Helmet>
-          <title>Maulana Laundry | Jasa Laundry Bogor</title>
-          <meta name="description" content="Jasa laundry kiloan dan satuan terbaik di Bogor. Hubungi 081316790080. Layanan antar jemput tersedia." />
-          <meta name="theme-color" content="#0ea5e9" />
-          <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-        </Helmet>
-        
-        <Hero />
-        
-        {/* Placeholder for Services Section */}
-        <section className="py-20 bg-secondary/30">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold text-blue-900 mb-8">Layanan Kami</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {['Cuci Komplit', 'Cuci Kering', 'Satuan'].map((service) => (
-                <div key={service} className="bg-white p-6 rounded-xl shadow-md border border-blue-100 hover:shadow-lg transition-shadow">
-                  <h3 className="text-xl font-semibold mb-2 text-primary">{service}</h3>
-                  <p className="text-gray-600">Proses cepat dan higienis.</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <FloatingWA />
-      </div>
-    </HelmetProvider>
-  )
-}
-
-export default App
+<Helmet>
+    <title>Maulana Laundry | Jasa Laundry Premium Bogor</title>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    {/* Other meta tags... */}
+</Helmet>
 ```
 
 ## 8. Development
 // turbo
-Run the frontend development server.
 ```bash
 cd frontend
 npm run dev
