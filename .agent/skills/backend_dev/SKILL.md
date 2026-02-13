@@ -41,30 +41,14 @@ When creating a new feature (e.g., "Manage Orders"):
 4.  **AutoMigrate (`database/connect.go`):** Add the new model to `db.AutoMigrate(&Order{})`.
 
 ### B. Standard Response Format
-Always use a helper function to format responses. If not present, create/use `utils/response.go`:
+Always use the helper functions in `utils/response.go`:
 
 ```go
-package utils
+// Success
+return utils.SendSuccessResponse(c, "Data fetched", data)
 
-import "github.com/gofiber/fiber/v2"
-
-type Response struct {
-    Status  string      `json:"status"`
-    Message string      `json:"message"`
-    Data    interface{} `json:"data"`
-}
-
-func JSONResponse(c *fiber.Ctx, status int, message string, data interface{}) error {
-    resStatus := "success"
-    if status >= 400 {
-        resStatus = "error"
-    }
-    return c.Status(status).JSON(Response{
-        Status:  resStatus,
-        Message: message,
-        Data:    data,
-    })
-}
+// Error
+return utils.SendErrorResponse(c, fiber.StatusNotFound, "Not found", nil)
 ```
 
 ### C. Error Handling Pattern

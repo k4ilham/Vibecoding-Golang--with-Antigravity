@@ -94,15 +94,21 @@ export const useAppStore = create<AppState>((set) => ({
 ```
 
 ## 3. Implement Admin Login Page
-Create `frontend/src/pages/AdminLogin.tsx`. Use a clean, professional design matching the InerLog aesthetic.
+Create `frontend/src/pages/AdminLogin.tsx`. 
+- **Design**: Clean, professional design with Framer Motion animations.
+- **Features**:
+    - **Demo Account Button**: One-click fill for `admin@laundry.com` / `admin123`.
+    - **Back to Website Button**: Quick navigation back to the Landing Page.
 
 ## 4. Admin Layout & Sidebar
 Create a layout that includes:
-- **Collapsible Sidebar**: Lists menus (Users, Transactions, Services, etc.)
+- **Collapsible Sidebar**: 
+    - Lists primary menus (Dashboard, Users, Transactions, Services, Settings).
+    - **View Website Link**: A direct link to go back to the public landing page.
 - **Header**: Contains:
-    - Sidebar Toggle Button
+    - Sidebar Toggle Button.
     - **Tab Bar**: Horizontal scrollable tabs with "X" to close.
-    - User Profile Dropdown (Logout, Profile/Change Password).
+    - User Profile Dropdown (Logout, Profile settings).
 - **Main Content**: Renders the component based on `activeTabId`.
 
 ## 5. Implement Tabs Logic

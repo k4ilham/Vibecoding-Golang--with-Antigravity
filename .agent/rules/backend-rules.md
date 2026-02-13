@@ -1,8 +1,4 @@
 ---
-trigger: always_on
----
-
----
 description: This document outlines the coding standards, architectural patterns, and best practices for the Golang backend project using Fiber, GORM, and Clean Architecture principles.
 ---
 

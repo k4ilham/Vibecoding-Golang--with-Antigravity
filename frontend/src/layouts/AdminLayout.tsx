@@ -12,8 +12,10 @@ import {
     X,
     UserCircle,
     Bell,
-    Search
+    Search,
+    Home
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import UserPage from '@/pages/admin/UserPage';
 import LayananPage from '@/pages/admin/LayananPage';
 import { useAppStore } from '@/store/useAppStore';
@@ -98,7 +100,17 @@ export const AdminLayout = () => {
                     <SidebarItem icon={Settings} label="Settings" id="settings" component="SettingsContent" active={activeTabId === 'settings'} collapsed={!isSidebarOpen} />
                 </div>
 
-                <div className="p-4 border-t border-gray-100 mt-auto">
+                <div className="p-4 border-t border-gray-100 mt-auto space-y-2">
+                    <Link
+                        to="/"
+                        className={cn(
+                            "w-full flex items-center space-x-3 px-4 py-3 text-blue-600 hover:bg-blue-50 rounded-xl transition-all group",
+                            !isSidebarOpen && "justify-center"
+                        )}
+                    >
+                        <Home size={22} className="group-hover:scale-110 transition-transform" />
+                        {isSidebarOpen && <span className="font-semibold">View Website</span>}
+                    </Link>
                     <button
                         onClick={logout}
                         className={cn(

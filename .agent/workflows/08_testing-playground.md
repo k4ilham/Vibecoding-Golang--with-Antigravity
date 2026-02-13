@@ -22,8 +22,8 @@ Use the **Browser Tool** to execute the following steps sequentially.
 ### 2.1 Authentication & Navigation
 1.  **Open Browser**: Navigate to `http://localhost:5173/admin/login`.
 2.  **Login**: 
-    -   Enter Email: `admin@laundry.com`
-    -   Enter Password: `admin123`
+    -   **Option A**: Click **Use Demo Account** to auto-fill.
+    -   **Option B**: Enter Email: `admin@laundry.com` & Password: `admin123`.
     -   Click **Login**.
 3.  **Navigate**: Click on the **Users** tab or navigate directly to `http://localhost:5173/admin/users`.
 

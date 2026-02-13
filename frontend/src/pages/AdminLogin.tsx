@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Lock, Mail, Loader2, WashingMachine } from 'lucide-react';
+import { Lock, Mail, Loader2, WashingMachine, Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -44,7 +44,16 @@ const AdminLogin = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-blue-100 p-4">
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-blue-100 p-4 relative">
+            <Button
+                variant="ghost"
+                className="absolute top-6 left-6 text-gray-500 hover:text-primary rounded-full px-4"
+                onClick={() => navigate('/')}
+            >
+                <Home className="mr-2 h-4 w-4" />
+                Back to Website
+            </Button>
+
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -85,7 +94,7 @@ const AdminLogin = () => {
                                     <Input
                                         id="email"
                                         type="email"
-                                        placeholder="admin@maulana.com"
+                                        placeholder="admin@laundry.com"
                                         className="pl-10"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
@@ -107,6 +116,19 @@ const AdminLogin = () => {
                                         required
                                     />
                                 </div>
+                            </div>
+                            <div className="pt-2">
+                                <Button
+                                    type="button"
+                                    variant="outline"
+                                    className="w-full border-dashed border-blue-200 text-blue-600 hover:bg-blue-50 hover:text-blue-700 hover:border-blue-300 transition-all"
+                                    onClick={() => {
+                                        setEmail('admin@laundry.com');
+                                        setPassword('admin123');
+                                    }}
+                                >
+                                    Use Demo Account
+                                </Button>
                             </div>
                         </CardContent>
                         <CardFooter>

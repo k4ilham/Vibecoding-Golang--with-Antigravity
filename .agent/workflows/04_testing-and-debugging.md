@@ -19,25 +19,25 @@ Verify all navigation links and sections on the landing page.
 
 ## 2. Admin Login Flow
 // turbo
-Test the login process with seeded credentials.
+Test the login process with seeded credentials or Demo button.
 ```bash
 # Task for Browser Subagent:
 # 1. Navigate to http://localhost:5173/admin/login
-# 2. Enter email: admin@maulana.com (Check seeder.go if different)
-# 3. Enter password: admin123
+# 2. OPTION A: Click "Use Demo Account" button.
+# 3. OPTION B: Enter email: admin@laundry.com / password: admin123
 # 4. Click login button.
 # 5. Verify it redirects to /admin/dashboard.
-# NOTE: If login fails, verify backend is running on port 8080 (check .env and output.log).
+# NOTE: If login fails, verify backend is running on port 8080.
 ```
 
 ## 3. Dashboard Interactivity
 // turbo
-Test sidebar, multi-tab system, and profile dropdown.
+Test sidebar, multi-tab system, and navigation.
 ```bash
 # Task for Browser Subagent:
-# 1. On Dashboard, click sidebar menus: Users, Transactions, Services, Settings.
+# 1. On Dashboard, click sidebar menus: Users, Transactions, Services.
 # 2. Verify new tabs are created correctly in the Tab Bar.
-# 3. Click the Sidebar toggle to collapse/expand.
+# 3. Click "View Website" in the sidebar and verify it navigates back to the landing page.
 # 4. Success-click on the Profile dropdown (User Avatar).
 ```
 

@@ -44,6 +44,9 @@ cd frontend
 npm run dev
 ```
 
+**Note on Ports:**
+Vite usually runs on port `5173`. However, if the system or another process is locking that port, it may automatically fall back to `5174`. Check the terminal output to verify the active URL.
+
 ## Automation Script
 You can use the provided script `.agent/skills/app_runner/scripts/run_app.sh` to perform all steps in one go.
 

@@ -26,7 +26,7 @@ This document defines the requirements for maintaining high-quality documentatio
 - Documentation must be updated whenever a new feature, environment variable, or dependency is added.
 - Obsolete documentation should be removed or marked as deprecated.
 
-## 5. API Documentation
+- Detailed API documentation must be maintained in `docs/API.md`.
 - Every API endpoint should be documented with:
   - Method (GET, POST, etc.)
   - Path

@@ -32,8 +32,9 @@ frontend/
 ## 2. Coding Standards
 
 ### 2.1 General Setup
-- **Framework**: React 18+ with Vite
+- **Build Tool**: Vite 6+
 - **Language**: TypeScript (`.tsx` for components, `.ts` for logic)
+- **Dependency Management**: Use `--legacy-peer-deps` with npm if encountering React 19 peer dependency conflicts (common with libraries like `react-helmet-async`).
 - **Formatting**: Use Prettier with standard config.
 - **Linting**: ESLint with React Hooks plugin.
 
@@ -85,8 +86,12 @@ export const MyComponent = ({ prop1 }: Props) => {
 ## 7. Security (Frontend)
 - **XSS**: Sanitize user input. Avoid `dangerouslySetInnerHTML`.
 - **Auth**: Store JWT in `localStorage` (or HttpOnly Cookie if API supports it).
-- **Route Guard**: Implement `PrivateRoute` wrapper for protected pages.
+- **Route Guard**: Implement `AuthGuard` wrapper for protected pages.
 - **Headers**: Implement `react-helmet-async` for security headers meta tags.
+
+## 8. UX & Navigation Standards
+- **Demo Access**: The Admin Login page must include a "Use Demo Account" button for quick access during development/demo.
+- **Global Exit**: All administrative views (Login & Dashboard) must provide a visible link to return to the public Landing Page (e.g., "Back to Website" or "View Website").
 
 ## 9. Admin Dashboard Standards
 - **Data Tables**: Use TanStack Table with the `DataTable` shared component. Must include pagination, sorting, and column visibility.
