@@ -13,6 +13,35 @@ Initialize the React project with Vite and TypeScript.
 npm create vite@latest frontend -- --template react-ts
 ```
 
+## 1.1 Setup .env & .gitignore
+// turbo
+Configure environment variables and update `.gitignore` to prevent secret leaks.
+```bash
+cd frontend
+
+# Create .env files
+cat <<EOF > .env
+VITE_API_URL=http://localhost:8080/api
+EOF
+
+cat <<EOF > .env.example
+VITE_API_URL=http://localhost:8080/api
+EOF
+
+# Update .gitignore
+cat <<EOF >> .gitignore
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Custom exclusions
+build/
+.DS_Store
+EOF
+```
+
 ## 2. Install Dependencies
 // turbo
 Install Tailwind v3 (stable), Framer Motion (for animations), and other required packages.
