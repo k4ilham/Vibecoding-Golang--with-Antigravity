@@ -174,7 +174,7 @@ type User struct {
 	ID        uint           `gorm:"primaryKey" json:"id"`
 	Name      string         `json:"name"`
 	Email     string         `gorm:"unique" json:"email"`
-	Password  string         `json:"-"`
+	Password  string         `gorm:"column:password_hash" json:"-"`
 	Role      string         `json:"role"` // admin, customer
 	CreatedAt time.Time      `json:"created_at"`
 	UpdatedAt time.Time      `json:"updated_at"`
@@ -319,7 +319,49 @@ func SetupRoutes(app *fiber.App) {
 }
 ```
 
-## 10. Main Entry & Migration
+## 10. Database Seeder
+Create `database/seeder.go` to handle initial data population.
+```go
+package database
+
+import (
+	"laundry-backend/models"
+	"laundry-backend/utils"
+	"log"
+)
+
+func Seed() {
+	// Seed Admin
+	var userCount int64
+	DB.Model(&models.User{}).Count(&userCount)
+	if userCount == 0 {
+		hash, _ := utils.HashPassword("admin123")
+		DB.Create(&models.User{
+			Name:     "Admin",
+			Email:    "admin@laundry.com",
+			Password: hash,
+			Role:     "admin",
+		})
+		log.Println("Seeded Admin User")
+	}
+
+	// Seed Services
+	var serviceCount int64
+	DB.Model(&models.Service{}).Count(&serviceCount)
+	if serviceCount == 0 {
+		services := []models.Service{
+			{Name: "Cuci Komplit", Description: "Cuci setrika rapi", Unit: "kg", Price: 7000},
+			{Name: "Cuci Kering", Description: "Hanya cuci dan kering", Unit: "kg", Price: 5000},
+			{Name: "Setrika Saja", Description: "Hanya jasa setrika", Unit: "kg", Price: 4000},
+			{Name: "Cuci Bedcover", Description: "Cuci bedcover ukuran besar", Unit: "pcs", Price: 25000},
+		}
+		DB.Create(&services)
+		log.Println("Seeded Default Services")
+	}
+}
+```
+
+## 11. Main Entry & Migration
 Create `cmd/main.go`.
 ```go
 package main
@@ -329,11 +371,15 @@ import (
 	"laundry-backend/database"
 	"laundry-backend/models"
 	"laundry-backend/routes"
-	"laundry-backend/utils" // Imported for seeding if needed
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
+	"github.com/gofiber/fiber/v2/middleware/helmet"
+	"github.com/gofiber/fiber/v2/middleware/limiter"
+	"github.com/gofiber/fiber/v2/middleware/logger"
+	"github.com/gofiber/fiber/v2/middleware/recover"
 	"log"
+	"time"
 )
 
 func main() {
@@ -344,25 +390,52 @@ func main() {
 	log.Println("Running Migrations...")
 	database.DB.AutoMigrate(&models.User{}, &models.Service{}, &models.Transaction{})
 	
-	// 3. Seed Data (Optional - Simple check)
-	var userCount int64
-	database.DB.Model(&models.User{}).Count(&userCount)
-	if userCount == 0 {
-		hash, _ := utils.HashPassword("admin123")
-		database.DB.Create(&models.User{
-			Name: "Admin",
-			Email: "admin@laundry.com",
-			Password: hash,
-			Role: "admin",
-		})
-		log.Println("Seeded Admin User")
-	}
+	// 3. Seed Data
+	database.Seed()
 
 	// 4. Init Fiber
 	app := fiber.New()
 	
 	// 5. Middleware
+	// Logger
+	app.Use(logger.New(logger.Config{
+		Format:     "[${time}] ${status} - ${method} ${path}\n",
+		TimeFormat: "2006-01-02 15:04:05",
+		TimeZone:   "Local",
+	}))
+
+	// Security Headers
+	app.Use(helmet.New())
+
+	// Panic Recovery
+	app.Use(recover.New())
+
+	// CORS
 	app.Use(cors.New())
+
+	// Rate Limiting
+	app.Use(limiter.New(limiter.Config{
+		Max:        100,
+		Expiration: 60 * time.Second,
+		KeyGenerator: func(c *fiber.Ctx) string {
+			return c.IP()
+		},
+		LimitReached: func(c *fiber.Ctx) error {
+			return c.Status(fiber.StatusTooManyRequests).JSON(fiber.Map{
+				"status":  "error",
+				"message": "Too many requests, please try again later.",
+			})
+		},
+	}))
+
+	// Health Check Endpoint
+	app.Get("/health", func(c *fiber.Ctx) error {
+		return c.JSON(fiber.Map{
+			"status":  "success",
+			"message": "Server is up and running",
+			"timestamp": time.Now(),
+		})
+	})
 
 	// 6. Routes
 	routes.SetupRoutes(app)
@@ -376,7 +449,7 @@ func main() {
 }
 ```
 
-## 11. Run Application
+## 12. Run Application
 // turbo
 Run the application (which runs migrations on start).
 ```bash

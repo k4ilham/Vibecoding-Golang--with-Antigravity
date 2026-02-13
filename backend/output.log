@@ -1,0 +1,175 @@
+2026/02/14 01:45:08 Database connection established
+2026/02/14 01:45:08 Running Migrations...
+
+2026/02/14 01:45:09 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[827.994ms] [33m[rows:1][35m SELECT count(*) FROM information_schema.tables WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'users' AND table_type = 'BASE TABLE'[0m
+
+2026/02/14 01:45:09 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[549.874ms] [33m[rows:1][35m SELECT CURRENT_DATABASE()[0m
+
+2026/02/14 01:45:10 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[553.569ms] [33m[rows:-][35m SELECT c.column_name, c.is_nullable = 'YES', c.udt_name, c.character_maximum_length, c.numeric_precision, c.numeric_precision_radix, c.numeric_scale, c.datetime_precision, 8 * typlen, c.column_default, pd.description, c.identity_increment FROM information_schema.columns AS c JOIN pg_type AS pgt ON c.udt_name = pgt.typname LEFT JOIN pg_catalog.pg_description as pd ON pd.objsubid = c.ordinal_position AND pd.objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = c.table_name AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = c.table_schema)) where table_catalog = 'neondb' AND table_schema = CURRENT_SCHEMA() AND table_name = 'users'[0m
+
+2026/02/14 01:45:10 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[280.516ms] [33m[rows:-][35m SELECT * FROM "users" LIMIT 5[0m
+
+2026/02/14 01:45:11 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[554.089ms] [33m[rows:-][35m SELECT constraint_name FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_catalog, table_name, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'neondb' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'users' AND constraint_type = 'UNIQUE'[0m
+
+2026/02/14 01:45:12 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[583.688ms] [33m[rows:-][35m SELECT c.column_name, constraint_name, constraint_type FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_catalog, table_name, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'neondb' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'users'[0m
+
+2026/02/14 01:45:12 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[553.124ms] [33m[rows:-][35m SELECT a.attname as column_name, format_type(a.atttypid, a.atttypmod) AS data_type
+		FROM pg_attribute a JOIN pg_class b ON a.attrelid = b.oid AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA())
+		WHERE a.attnum > 0 -- hide internal columns
+		AND NOT a.attisdropped -- hide deleted columns
+		AND b.relname = 'users'[0m
+
+2026/02/14 01:45:13 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[662.598ms] [33m[rows:0][35m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'users' AND column_name = 'id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))[0m
+
+2026/02/14 01:45:13 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[274.379ms] [33m[rows:0][35m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'users' AND column_name = 'name') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))[0m
+
+2026/02/14 01:45:13 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[274.813ms] [33m[rows:0][35m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'users' AND column_name = 'email') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))[0m
+
+2026/02/14 01:45:14 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[274.601ms] [33m[rows:0][35m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'users' AND column_name = 'password_hash') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))[0m
+
+2026/02/14 01:45:14 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[274.921ms] [33m[rows:0][35m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'users' AND column_name = 'role') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))[0m
+
+2026/02/14 01:45:14 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[275.782ms] [33m[rows:0][35m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'users' AND column_name = 'created_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))[0m
+
+2026/02/14 01:45:15 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[276.412ms] [33m[rows:0][35m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'users' AND column_name = 'updated_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))[0m
+
+2026/02/14 01:45:15 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[278.716ms] [33m[rows:0][35m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'users' AND column_name = 'deleted_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))[0m
+
+2026/02/14 01:45:15 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[551.975ms] [33m[rows:1][35m SELECT count(*) FROM pg_indexes WHERE tablename = 'users' AND indexname = 'idx_users_deleted_at' AND schemaname = CURRENT_SCHEMA()[0m
+
+2026/02/14 01:45:16 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[317.060ms] [33m[rows:1][35m SELECT count(*) FROM information_schema.tables WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'services' AND table_type = 'BASE TABLE'[0m
+
+2026/02/14 01:45:16 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[275.433ms] [33m[rows:1][35m SELECT CURRENT_DATABASE()[0m
+
+2026/02/14 01:45:16 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[276.189ms] [33m[rows:-][35m SELECT c.column_name, c.is_nullable = 'YES', c.udt_name, c.character_maximum_length, c.numeric_precision, c.numeric_precision_radix, c.numeric_scale, c.datetime_precision, 8 * typlen, c.column_default, pd.description, c.identity_increment FROM information_schema.columns AS c JOIN pg_type AS pgt ON c.udt_name = pgt.typname LEFT JOIN pg_catalog.pg_description as pd ON pd.objsubid = c.ordinal_position AND pd.objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = c.table_name AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = c.table_schema)) where table_catalog = 'neondb' AND table_schema = CURRENT_SCHEMA() AND table_name = 'services'[0m
+
+2026/02/14 01:45:16 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[275.382ms] [33m[rows:-][35m SELECT * FROM "services" LIMIT 5[0m
+
+2026/02/14 01:45:17 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[279.041ms] [33m[rows:-][35m SELECT constraint_name FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_catalog, table_name, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'neondb' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'services' AND constraint_type = 'UNIQUE'[0m
+
+2026/02/14 01:45:17 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[291.126ms] [33m[rows:-][35m SELECT c.column_name, constraint_name, constraint_type FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_catalog, table_name, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'neondb' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'services'[0m
+
+2026/02/14 01:45:17 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[275.942ms] [33m[rows:-][35m SELECT a.attname as column_name, format_type(a.atttypid, a.atttypmod) AS data_type
+		FROM pg_attribute a JOIN pg_class b ON a.attrelid = b.oid AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA())
+		WHERE a.attnum > 0 -- hide internal columns
+		AND NOT a.attisdropped -- hide deleted columns
+		AND b.relname = 'services'[0m
+
+2026/02/14 01:45:18 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[275.001ms] [33m[rows:0][35m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'services' AND column_name = 'id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'services' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))[0m
+
+2026/02/14 01:45:18 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[274.869ms] [33m[rows:0][35m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'services' AND column_name = 'name') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'services' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))[0m
+
+2026/02/14 01:45:18 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[275.659ms] [33m[rows:0][35m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'services' AND column_name = 'description') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'services' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))[0m
+
+2026/02/14 01:45:18 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[274.907ms] [33m[rows:0][35m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'services' AND column_name = 'unit') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'services' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))[0m
+
+2026/02/14 01:45:19 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[274.550ms] [33m[rows:0][35m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'services' AND column_name = 'price') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'services' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))[0m
+
+2026/02/14 01:45:19 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[274.949ms] [33m[rows:0][35m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'services' AND column_name = 'created_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'services' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))[0m
+
+2026/02/14 01:45:19 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[274.894ms] [33m[rows:0][35m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'services' AND column_name = 'updated_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'services' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))[0m
+
+2026/02/14 01:45:20 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[275.221ms] [33m[rows:0][35m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'services' AND column_name = 'deleted_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'services' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))[0m
+
+2026/02/14 01:45:20 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[275.828ms] [33m[rows:1][35m SELECT count(*) FROM pg_indexes WHERE tablename = 'services' AND indexname = 'idx_services_deleted_at' AND schemaname = CURRENT_SCHEMA()[0m
+
+2026/02/14 01:45:20 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[274.898ms] [33m[rows:1][35m SELECT count(*) FROM information_schema.tables WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'transactions' AND table_type = 'BASE TABLE'[0m
+
+2026/02/14 01:45:20 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[278.266ms] [33m[rows:1][35m SELECT CURRENT_DATABASE()[0m
+
+2026/02/14 01:45:21 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[278.168ms] [33m[rows:-][35m SELECT c.column_name, c.is_nullable = 'YES', c.udt_name, c.character_maximum_length, c.numeric_precision, c.numeric_precision_radix, c.numeric_scale, c.datetime_precision, 8 * typlen, c.column_default, pd.description, c.identity_increment FROM information_schema.columns AS c JOIN pg_type AS pgt ON c.udt_name = pgt.typname LEFT JOIN pg_catalog.pg_description as pd ON pd.objsubid = c.ordinal_position AND pd.objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = c.table_name AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = c.table_schema)) where table_catalog = 'neondb' AND table_schema = CURRENT_SCHEMA() AND table_name = 'transactions'[0m
+
+2026/02/14 01:45:21 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[278.630ms] [33m[rows:-][35m SELECT * FROM "transactions" LIMIT 5[0m
+
+2026/02/14 01:45:21 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[275.900ms] [33m[rows:-][35m SELECT constraint_name FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_catalog, table_name, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'neondb' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'transactions' AND constraint_type = 'UNIQUE'[0m
+
+2026/02/14 01:45:21 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[276.771ms] [33m[rows:-][35m SELECT c.column_name, constraint_name, constraint_type FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_catalog, table_name, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'neondb' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'transactions'[0m
+
+2026/02/14 01:45:22 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[280.029ms] [33m[rows:-][35m SELECT a.attname as column_name, format_type(a.atttypid, a.atttypmod) AS data_type
+		FROM pg_attribute a JOIN pg_class b ON a.attrelid = b.oid AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA())
+		WHERE a.attnum > 0 -- hide internal columns
+		AND NOT a.attisdropped -- hide deleted columns
+		AND b.relname = 'transactions'[0m
+
+2026/02/14 01:45:22 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[275.392ms] [33m[rows:0][35m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'transactions' AND column_name = 'id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'transactions' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))[0m
+
+2026/02/14 01:45:22 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[278.938ms] [33m[rows:0][35m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'transactions' AND column_name = 'user_id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'transactions' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))[0m
+
+2026/02/14 01:45:23 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[275.773ms] [33m[rows:0][35m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'transactions' AND column_name = 'service_id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'transactions' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))[0m
+
+2026/02/14 01:45:23 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[274.545ms] [33m[rows:0][35m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'transactions' AND column_name = 'quantity') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'transactions' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))[0m
+
+2026/02/14 01:45:23 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[274.893ms] [33m[rows:0][35m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'transactions' AND column_name = 'total') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'transactions' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))[0m
+
+2026/02/14 01:45:23 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[275.894ms] [33m[rows:0][35m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'transactions' AND column_name = 'status') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'transactions' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))[0m
+
+2026/02/14 01:45:24 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[274.913ms] [33m[rows:0][35m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'transactions' AND column_name = 'created_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'transactions' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))[0m
+
+2026/02/14 01:45:24 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[275.556ms] [33m[rows:0][35m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'transactions' AND column_name = 'updated_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'transactions' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))[0m
+
+2026/02/14 01:45:24 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[274.871ms] [33m[rows:0][35m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'transactions' AND column_name = 'deleted_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'transactions' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))[0m
+
+2026/02/14 01:45:25 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[551.056ms] [33m[rows:1][35m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'transactions' AND constraint_name = 'fk_transactions_user'[0m
+
+2026/02/14 01:45:25 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[274.716ms] [33m[rows:1][35m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'transactions' AND constraint_name = 'fk_transactions_service'[0m
+
+2026/02/14 01:45:25 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/cmd/main.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[276.005ms] [33m[rows:1][35m SELECT count(*) FROM pg_indexes WHERE tablename = 'transactions' AND indexname = 'idx_transactions_deleted_at' AND schemaname = CURRENT_SCHEMA()[0m
+
+2026/02/14 01:45:26 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/database/seeder.go:12 [33mSLOW SQL >= 200ms
+[0m[31;1m[553.124ms] [33m[rows:1][35m SELECT count(*) FROM "users" WHERE "users"."deleted_at" IS NULL[0m
+
+2026/02/14 01:45:26 [32m/Users/mbairm12020/Documents/projek/vibecoding/web app laundry/backend/database/seeder.go:26 [33mSLOW SQL >= 200ms
+[0m[31;1m[556.967ms] [33m[rows:1][35m SELECT count(*) FROM "services" WHERE "services"."deleted_at" IS NULL[0m
+2026/02/14 01:45:26 failed to listen: listen tcp4 :8090: bind: address already in use
+exit status 1
