@@ -14,5 +14,5 @@ type Service struct {
 	Price       float64        `json:"price"`
 	CreatedAt   time.Time      `json:"created_at"`
 	UpdatedAt   time.Time      `json:"updated_at"`
-	DeletedAt   gorm.DeletedAt `gorm:"index" json:"-"`
+	DeletedAt   gorm.DeletedAt `gorm:"index" json:"deleted_at"`
 }

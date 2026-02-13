@@ -14,6 +14,8 @@ import {
     Bell,
     Search
 } from 'lucide-react';
+import UserPage from '@/pages/admin/UserPage';
+import LayananPage from '@/pages/admin/LayananPage';
 import { useAppStore } from '@/store/useAppStore';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -30,16 +32,14 @@ import { cn } from '@/lib/utils';
 
 // Content Components (Placeholders)
 const DashboardContent = () => <div className="p-8"> <h2 className="text-3xl font-bold mb-4">Dashboard Overview</h2> <div className="grid grid-cols-1 md:grid-cols-3 gap-6"> {[1, 2, 3].map(i => <div key={i} className="bg-white p-6 rounded-2xl border shadow-sm h-32 animate-pulse" />)} </div> </div>;
-const UserManagement = () => <div className="p-8"> <h2 className="text-3xl font-bold mb-4">User Management</h2> <div className="bg-white rounded-2xl border p-8 shadow-sm"> <p className="text-gray-500 italic">User list loading...</p> </div> </div>;
-const Transactions = () => <div className="p-8"> <h2 className="text-3xl font-bold mb-4">Transactions Histoy</h2> <div className="bg-white rounded-2xl border p-8 shadow-sm"> <p className="text-gray-500 italic">History loading...</p> </div> </div>;
-const ServicesList = () => <div className="p-8"> <h2 className="text-3xl font-bold mb-4">Services Control</h2> <div className="bg-white rounded-2xl border p-8 shadow-sm"> <p className="text-gray-500 italic">Services loading...</p> </div> </div>;
+const Transactions = () => <div className="p-8"> <h2 className="text-3xl font-bold mb-4">Transactions History</h2> <div className="bg-white rounded-2xl border p-8 shadow-sm"> <p className="text-gray-500 italic">History loading...</p> </div> </div>;
 const SettingsContent = () => <div className="p-8"> <h2 className="text-3xl font-bold mb-4">System Settings</h2> <div className="bg-white rounded-2xl border p-8 shadow-sm"> <p className="text-gray-500 italic">Settings panel...</p> </div> </div>;
 
 const componentMap: Record<string, React.FC> = {
     DashboardContent,
-    UserManagement,
+    UserManagement: UserPage,
     Transactions,
-    ServicesList,
+    ServicesList: LayananPage,
     SettingsContent
 };
 

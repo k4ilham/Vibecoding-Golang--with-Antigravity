@@ -19,6 +19,8 @@ function App() {
           <Route element={<AuthGuard />}>
             <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />
             <Route path="/admin/dashboard" element={<AdminLayout />} />
+            <Route path="/admin/user" element={<AdminLayout />} />
+            <Route path="/admin/layanan" element={<AdminLayout />} />
           </Route>
 
           {/* Fallback */}

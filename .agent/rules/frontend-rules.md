@@ -88,9 +88,9 @@ export const MyComponent = ({ prop1 }: Props) => {
 - **Route Guard**: Implement `PrivateRoute` wrapper for protected pages.
 - **Headers**: Implement `react-helmet-async` for security headers meta tags.
 
-## 8. Git Workflow
-- **Commits**: Follow Conventional Commits.
-  - `feat: add floating whatsapp button`
-  - `fix: mobile navbar alignment`
-  - `style: update hero section colors`
-- **Branches**: `feature/component-name`, `fix/bug-name`.
+## 9. Admin Dashboard Standards
+- **Data Tables**: Use TanStack Table with the `DataTable` shared component. Must include pagination, sorting, and column visibility.
+- **Dropdowns**: Use Shadcn `Select` or `Combobox` for all dropdowns. Searchable selects are preferred for large datasets.
+- **Exports**: All data tables must support CSV, XLSX, and PDF exports using `xlsx` and `jspdf`.
+- **Row Actions**: Common actions should include View, Edit, Archive (Soft Delete), Restore, and Delete (Permanent).
+- **Bulk Actions**: Implement checkboxes for bulk selection and actions.
