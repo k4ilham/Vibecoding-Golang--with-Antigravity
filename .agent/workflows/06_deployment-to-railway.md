@@ -122,7 +122,7 @@ WORKDIR /app
 COPY package.json pnpm-lock.yaml* package-lock.json* ./
 
 # Install dependencies
-RUN [ -f pnpm-lock.yaml ] && pnpm install --frozen-lockfile || npm install
+RUN [ -f pnpm-lock.yaml ] && pnpm install --frozen-lockfile || npm install --legacy-peer-deps
 
 # Copy source code
 COPY . .
