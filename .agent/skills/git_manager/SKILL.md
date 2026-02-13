@@ -53,6 +53,14 @@ The agent can execute or suggest the following git commands based on user needs.
 - **Atomic Commits**: Encourage small, focused commits rather than one massive commit at the end.
 - **Descriptive Messages**: Use clear messages describing *what* and *why* changes were made.
 
+## 4. Handling Exposed Secrets
+If a sensitive file (like `.env`) is accidentally committed:
+1.  **Untrack immediately**: Run `git rm --cached <file>`.
+2.  **Add to `.gitignore`**: Ensure the file pattern is in `.gitignore`.
+3.  **Commit the removal**: `git commit -m "chore: remove exposed secrets from tracking"`.
+4.  **Rotate Secrets**: Advise the user to immediately change any passwords or keys that were exposed.
+5.  **History Erasure (Optional)**: If the repo is public and history must be cleaned, suggest using `git filter-repo` or BFG Repo-Cleaner.
+
 ## Example Workflow for "Setup Git"
 1.  **Scan Loop**: Check project root for language indicators.
 2.  **Generate .gitignore**: Create the file based on findings.

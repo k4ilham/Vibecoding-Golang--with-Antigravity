@@ -16,6 +16,36 @@ if [ ! -f go.mod ]; then
 fi
 ```
 
+## 1.1 Setup .gitignore
+// turbo
+Create a `.gitignore` file to prevent sensitive files like `.env` from being tracked.
+```bash
+cd backend
+if [ ! -f .gitignore ]; then
+cat <<EOF > .gitignore
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+bin/
+tmp/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+EOF
+fi
+```
+
 ## 2. Install Dependencies
 // turbo
 Install Fiber, GORM, Postgres driver, JWT, Bcrypt, UUID, and Godotenv.

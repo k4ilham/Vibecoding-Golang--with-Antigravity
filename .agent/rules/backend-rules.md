@@ -96,10 +96,26 @@ All API responses MUST follow a consistent JSON structure using a helper functio
 - **AutoMigrate**: Use `db.AutoMigrate(&Model{})` in `main.go` or a separate migration script for development.
 - **Seeding**: Create a seeder function to populate initial data (Admin user, Default Services) if the database is empty.
 
-## 8. Git Workflow
+## 8. Security & Secrets Management
+- **Environment Variables**:
+  - NEVER commit `.env` files to version control.
+  - Always provide an `.env.example` with dummy values for other developers.
+  - Use `.gitignore` to protect sensitive files.
+- **Accidental Exposure**:
+  - If a secret is committed, **revoke and rotate** it immediately.
+  - Use `git rm --cached .env` to stop tracking but keep local files.
+- **Production Secrets**: Use secure vault services or platform-specific environment settings (e.g., Railway, Vercel).
+
+## 9. Git Workflow
 - **Commits**: Use [Conventional Commits](https://www.conventionalcommits.org/)
   - `feat: add user login`
   - `fix: resolve db connection timeout`
   - `chore: update dependencies`
   - `refactor: simplify auth middleware`
 - **Branches**: `feature/feature-name`, `bugfix/issue-description`.
+- **Ignore List**: Ensure `.gitignore` includes:
+  - `.env`, `.env.*`
+  - `node_modules/`
+  - `vendor/`
+  - `tmp/`, `bin/`, `*.exe`, `*.log`
+  - `.DS_Store`

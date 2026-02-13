@@ -81,5 +81,6 @@ if err := db.Create(&user).Error; err != nil {
 - [ ] Conforms to `snake_case` file naming?
 - [ ] Exported structs/funcs use `PascalCase`?
 - [ ] `go fmt ./...` ran successfully?
+- [ ] `.env` is listed in `.gitignore` and not tracked by Git?
 - [ ] Errors handled and returned with proper status codes?
 - [ ] JSON response standard followed?
