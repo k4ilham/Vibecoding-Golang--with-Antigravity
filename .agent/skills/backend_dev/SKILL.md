@@ -24,6 +24,7 @@ This skill is designed to assist with developing high-quality, scalable backend 
 - Hash passwords using **Bcrypt**.
 - Implement **JWT** for authentication, protecting sensitive routes with middleware.
 - Configure **CORS** explicitly to allow `Authorization` headers.
+- **Critical**: If `AllowCredentials` is `true`, `AllowOrigins` **MUST NOT** use a wildcard (`*`). Use specific domains or an environment variable.
 - Validate all user inputs rigorously.
 
 ## 2. Implementation Guide

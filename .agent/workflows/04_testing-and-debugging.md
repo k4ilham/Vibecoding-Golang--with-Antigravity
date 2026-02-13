@@ -57,3 +57,10 @@ If the browser subagent reports an error (red screen, console error, or failed n
 1. **Analyze logs**: Check `backend/output.log` and browser console.
 2. **Fix Code**: Apply necessary fixes via `replace_file_content`.
 3. **Re-test**: Run the workflow step again until successful.
+
+## 6. Production Connectivity Troubleshooting
+If the application works in local but fails in production (Railway):
+- **CORS Check**: Verify Backend logs for "CORS panic" (wildcard + credentials). Wildcards `*` cannot be used with `AllowCredentials: true`.
+- **URL Check**: Check Browser Console Network tab. If request hits `http://localhost:8080`, then `VITE_API_URL` was not embedded correctly during build.
+- **Cache Purge**: Use "Clear site data" in browser Application tab to bypass Service Worker cache.
+- **Isolation**: Temporarily hardcode the Backend URL in `api.ts` to confirm if the issue is with configuration or networking.

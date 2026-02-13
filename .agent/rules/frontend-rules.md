@@ -99,3 +99,8 @@ export const MyComponent = ({ prop1 }: Props) => {
 - **Exports**: All data tables must support CSV, XLSX, and PDF exports using `xlsx` and `jspdf`.
 - **Row Actions**: Common actions should include View, Edit, Archive (Soft Delete), Restore, and Delete (Permanent).
 - **Bulk Actions**: Implement checkboxes for bulk selection and actions.
+
+## 10. API connectivity & Debugging
+- **Environment Variables**: Use `import.meta.env.VITE_API_URL`. Ensure it is set in the Deployment Platform (Railway) before building.
+- **Hardcoding for Testing**: If encountering persistent connectivity issues in production (e.g., localhost leak), hardcode the `baseURL` in `api.ts` temporarily to isolate the issue from environment variable build-time failures.
+- **Redeploy Requirement**: Remind that any change to variables or hardcoded URLs requires a full **Redeploy** to take effect in the browser.
